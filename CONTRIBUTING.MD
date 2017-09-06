@@ -12,11 +12,20 @@ The project uses [Handlebars](https://handlebarsjs.com) as its templating engine
 
 The JS Style followed is [SemiStandard](https://github.com/Flet/semistandard)
 
+### Testing
+
+Test framework used is [Mocha](https://mochajs.org) and the assertion library used is [Chai](http://chaijs.com/)
+
+Test files have to use `*.test.js` pattern in naming.
+
 ### Atom Plugins
 
 Atom plugins used in the project:
 <https://gist.github.com/prajjwaldimri/2b22112ec7af0d835765723f5a6aaabd>
 
+### Running the app
+
+Navigate to the artist-tracker-node folder in your terminal and run `npm run test-watch` command.
 
 ### GulpJS
 
