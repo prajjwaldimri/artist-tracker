@@ -5,6 +5,10 @@ router.get('/', (req, res) => {
   res.render('index', { title: 'Handlebars Up', body: 'Hello World!' });
 });
 
+router.get('/login', (req, res) => {
+  res.render('login', { title: 'Login' });
+});
+
 // Test function
 var add = function (a, b) {
   return a + b;
