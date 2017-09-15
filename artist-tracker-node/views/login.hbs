@@ -15,8 +15,17 @@
 </head>
 
 <body>
-  <a class="btn btn-floating pulse"><i class="material-icons">menu</i></a>
-  <h1>SiteName: {{h.siteName}}</h1>
+  <!--Login Form -->
+  <form action="/login" method="post">
+    <input type="text" name="username" />
+    <input type="password" name="password" />
+
+    <button type="submit">Login</button>
+  </form>
+
+
+
+
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" href="/js/materialize.min.js"></script>
 </body>
