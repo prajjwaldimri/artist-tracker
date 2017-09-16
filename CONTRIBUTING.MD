@@ -33,4 +33,22 @@ Navigate to the artist-tracker-node folder in your terminal and run `npm run tes
 
 ## Android Application
 
-@ayushpant TODO
+### Kotlin
+
+The Kotlin programming language  is used to develop the application.
+
+### MusicBrainz API
+
+The MusicBrainz API is used to GET the information of Artists releases.
+
+### Last.fm
+
+The Last.fm API is also used to GET the information of Artists latest releases.
+
+### Suported Android API levels
+
+Build for Android API level 17 (Jelly Bean) to Android API level 26 (Oreo).
+
+### MVP Pattern
+
+MVP pattern is followed to develope application.
