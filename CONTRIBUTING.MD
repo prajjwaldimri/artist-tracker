@@ -37,11 +37,13 @@ Navigate to the artist-tracker-node folder in your terminal and run `npm run tes
 
 Android Studio 2.3.3 
 
-### Java
+### Language
+
+Java
 
 ### Fuel
 
-HTTP networking library for Kotlin/Android.
+HTTP networking library for Kotlin/Android/Java.
 <https://github.com/kittinunf/Fuel>
 
 ### Discogs
