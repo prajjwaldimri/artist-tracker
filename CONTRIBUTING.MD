@@ -33,22 +33,26 @@ Navigate to the artist-tracker-node folder in your terminal and run `npm run tes
 
 ## Android Application
 
-### Kotlin
+### IDE 
 
-The Kotlin programming language  is used to develop the application.
+Android Studio 2.3.3 
 
-### MusicBrainz API
+### Language
 
-The MusicBrainz API is used to GET the information of Artists releases.
+Java
 
-### Last.fm
+### Fuel
 
-The Last.fm API is also used to GET the information of Artists latest releases.
+HTTP networking library for Kotlin/Android/Java.
+<https://github.com/kittinunf/Fuel>
 
-### Suported Android API levels
+### Discogs
 
-Build for Android API level 17 (Jelly Bean) to Android API level 26 (Oreo).
+The [Discogs API](https://www.discogs.com/developers/) is used to GET the information about Artists latest releases. For more details about API visit following link:
+<https://www.discogs.com/developers/>
 
-### MVP Pattern
+### Supported Android API levels
 
-MVP pattern is followed to develope application.
+Android API level 16 (Jelly Bean) - 26 (Oreo).
+
+
