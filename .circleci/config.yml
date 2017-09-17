@@ -41,5 +41,5 @@ jobs:
         
       # run tests!
       - run: 
-        command: npm test
-        working_directory: artist-tracker-node
+          command: npm test
+          working_directory: artist-tracker-node
