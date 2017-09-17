@@ -19,7 +19,7 @@ jobs:
     steps:
       - checkout
 
-      -run: cd artist-tracker-node      
+      - run: cd artist-tracker-node      
 
       # Download and cache dependencies
       - restore_cache:
