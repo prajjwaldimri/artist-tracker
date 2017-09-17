@@ -5,6 +5,8 @@
 version: 2
 jobs:
   build:
+  general:
+  build_dir: artist-tracker-node
     docker:
       # specify the version you desire here
       - image: circleci/node:8.5
