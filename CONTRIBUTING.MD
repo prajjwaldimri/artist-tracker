@@ -39,7 +39,10 @@ Android Studio 2.3.3
 
 ### Java
 
-Java is used to develope the application.
+### Fuel
+
+HTTP networking library for Kotlin/Android.
+<https://github.com/kittinunf/Fuel>
 
 ### Discogs
 
@@ -48,6 +51,6 @@ The [Discogs API](https://www.discogs.com/developers/) is used to GET the inform
 
 ### Supported Android API levels
 
-Build for minimum Android API level 16 (Jelly Bean) to maximum Android API level 26 (Oreo).
+Android API level 16 (Jelly Bean) - 26 (Oreo).
 
 
