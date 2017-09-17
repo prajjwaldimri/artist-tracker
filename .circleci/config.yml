@@ -6,6 +6,8 @@ version: 2
 
 jobs:
   build:
+
+    working-directory: ~/artist-tracker
     
     docker:
       # specify the version you desire here
@@ -14,10 +16,7 @@ jobs:
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    general: 
-      build_dir: artist-tracker-node
+      # - image: circleci/mongo:3.4.4    
 
     steps:
       - checkout    
@@ -29,7 +28,9 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: npm install
+      - run: 
+          command: npm install
+          working_directory: artist-tracker-node
 
       - save_cache:
           paths:
