@@ -5,7 +5,7 @@ const app = express();
 const hbs = require('hbs');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const cookieParser = require('cookie-parser');
+const chalk = require('chalk');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
@@ -23,18 +23,18 @@ require('./config/passport')(passport);
 // G-zip compression
 app.use(compression());
 
-// Reads cookieParser
-app.use(cookieParser());
-
 // Gets info from HTML forms
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Set the templating engine to http://handlebarsjs.com/
 app.set('view engine', 'hbs');
 hbs.registerPartials(path.join(__dirname, '/views/partials'));
 
 // Passport settings
-app.use(session({ secret: 'Why So Serious?' }));
+app.use(
+  session({ secret: 'Why So Serious?', resave: false, saveUninitialized: true })
+);
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -54,5 +54,5 @@ require('./routes/index.js')(app, passport);
 
 // Up the App
 app.listen(PORT, function () {
-  console.log(`App up on port ${PORT}`);
+  console.log(chalk.bgRed.underline(`Listening on PORT: ${PORT}!`));
 });
