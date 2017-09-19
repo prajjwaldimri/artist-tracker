@@ -16,13 +16,11 @@ router.get('/test-flash', (req, res) => {
 });
 
 router.get('/login', userController.loginForm);
-
 router.post('/login', authController.login);
 
 router.get('/logout', authController.logout);
 
 router.get('/signup', userController.signupForm);
-
 router.post(
   '/signup',
   userController.validateSignUp,
@@ -34,9 +32,13 @@ router.post(
 router.get('/profile', authController.isLoggedIn, userController.profile);
 
 router.get('/account', authController.isLoggedIn, userController.account);
-
 router.post('/account', userController.updateAccount);
-
 router.post('/account/forgot', authController.forgot);
+router.get('/account/reset/:token', authController.reset);
+router.post(
+  '/account/reset/:token',
+  authController.confirmedPasswords,
+  authController.update
+);
 
 module.exports = router;
