@@ -17,6 +17,7 @@ var PORT = process.env.PORT || 3000;
 
 // Connect to the database
 mongoose.connect(configDB.url);
+mongoose.promise = global.Promise; // Tells mongoose to use ES6 promises
 
 require('./config/passport')(passport);
 
@@ -28,8 +29,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Set the templating engine to http://handlebarsjs.com/
-app.set('view engine', 'hbs');
 hbs.registerPartials(path.join(__dirname, '/views/partials'));
+app.set('view engine', 'hbs');
 
 // Passport settings
 app.use(
@@ -45,11 +46,13 @@ app.use(express.static(path.join(__dirname, 'dist')));
 // Pass variables to all our templates
 app.use((req, res, next) => {
   res.locals.h = helpers;
+  res.locals.flashes = req.flash();
+  res.locals.user = req.user || null;
+  res.locals.currentYear = new Date().getFullYear();
   next();
 });
 
 // Delegate all routing responsibility to routes module.
-
 require('./routes/index.js')(app, passport);
 
 // Up the App

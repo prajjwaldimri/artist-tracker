@@ -31,8 +31,10 @@
     "hbs": "^4.0.1",
     "moment": "^2.18.1",
     "mongoose": "^4.11.11",
+    "mongoose-mongodb-errors": "0.0.2",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.2.1",
     "request": "^2.81.0"
   },
   "devDependencies": {

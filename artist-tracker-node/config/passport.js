@@ -26,7 +26,10 @@ module.exports = function (passport) {
       function (req, username, password, done) {
         // User.findOne won't execute until data is sent
         process.nextTick(function () {
-          User.findOne({ 'local.username': username }, function (err, user) {
+          User.findOne({ 'local.username': username }, async function (
+            err,
+            user
+          ) {
             // Return the error if any
             if (err) {
               return done(err);
@@ -44,12 +47,7 @@ module.exports = function (passport) {
               newUser.local.username = username;
               newUser.local.password = newUser.generateHash(password);
 
-              newUser.save(err => {
-                if (err) {
-                  throw err;
-                }
-                return done(null, newUser);
-              });
+              await newUser.save();
             }
           });
         });

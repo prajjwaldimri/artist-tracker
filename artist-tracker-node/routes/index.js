@@ -1,7 +1,14 @@
-const artistController = require('../controllers/artistcontroller');
-
 module.exports = function (app, passport) {
-  app.get('/', artistController.homepage);
+  app.get('/', (req, res) => {
+    res.render('index', { title: 'Handlebars Up', body: 'Hello World!' });
+  });
+
+  app.get('/test-flash', (req, res) => {
+    req.flash('success', 'Wassup!');
+    req.flash('success', 'Wassup! 2');
+    req.flash('info', 'Wassup!');
+    res.redirect('/');
+  });
 
   app.get('/login', (req, res) => {
     res.render('login', { title: 'Login' });
