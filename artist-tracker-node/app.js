@@ -12,7 +12,7 @@ const session = require('express-session');
 
 const helpers = require('./helpers');
 const routes = require('./routes/index');
-require('./config/passport');
+require('./handlers/passport');
 
 // G-zip compression
 app.use(compression());
@@ -29,7 +29,11 @@ app.set('view engine', 'hbs');
 
 // Passport settings
 app.use(
-  session({ secret: 'Why So Serious?', resave: false, saveUninitialized: true })
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true
+  })
 );
 app.use(flash());
 app.use(passport.initialize());
