@@ -15,8 +15,11 @@
     {{/each}}
   {{/if}}
 
-  {{> footer}}
+  {{#if user.gravatar}}
+    <img src='{{user.gravatar}}' alt="">
+  {{/if}}
 
+  <h1>{{user.username}}</h1> {{> footer}}
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" href="/js/materialize.min.js"></script>
 </body>
