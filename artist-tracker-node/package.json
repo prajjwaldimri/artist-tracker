@@ -2,9 +2,9 @@
   "name": "artist-tracker",
   "version": "0.0.1",
   "description": "Web Api for Artist Tracker",
-  "main": "app.js",
+  "main": "start.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node start.js",
     "test": "./node_modules/.bin/mocha **/*.test.js",
     "test-watch": "nodemon --exec \"npm test\""
   },
@@ -19,23 +19,26 @@
   },
   "homepage": "https://github.com/prajjwaldimri/artist-tracker#readme",
   "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.1",
     "chalk": "^2.1.0",
     "compression": "^1.7.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
-    "eslint": "^4.5.0",
+    "es6-promisify": "^5.0.0",
+    "eslint": "^4.7.1",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
+    "express-validator": "^4.1.1",
     "hbs": "^4.0.1",
+    "md5": "^2.2.1",
     "moment": "^2.18.1",
-    "mongoose": "^4.11.11",
+    "mongoose": "^4.11.12",
     "mongoose-mongodb-errors": "0.0.2",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.2.1",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "validator": "^8.2.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
@@ -45,12 +48,12 @@
     "eslint-plugin-react": "^7.3.0",
     "eslint-plugin-standard": "^3.0.1",
     "gulp": "^3.9.1",
-    "gulp-clean-css": "^3.7.0",
+    "gulp-clean-css": "^3.9.0",
     "gulp-imagemin": "^3.3.0",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.1",
     "gulp-uglify": "^3.0.0",
-    "mocha": "^3.5.0",
+    "mocha": "^3.5.3",
     "semistandard": "^11.0.0"
   }
 }

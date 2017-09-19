@@ -1,57 +1,42 @@
-module.exports = function (app, passport) {
-  app.get('/', (req, res) => {
-    res.render('index', { title: 'Handlebars Up', body: 'Hello World!' });
-  });
+const express = require('express');
+const router = express.Router();
+const userController = require('../controllers/userController');
+const authController = require('../controllers/authController');
 
-  app.get('/test-flash', (req, res) => {
-    req.flash('success', 'Wassup!');
-    req.flash('success', 'Wassup! 2');
-    req.flash('info', 'Wassup!');
-    res.redirect('/');
-  });
+router.get('/', (req, res) => {
+  res.render('index', { title: 'Handlebars Up', body: 'Hello World!' });
+});
 
-  app.get('/login', (req, res) => {
-    res.render('login', { title: 'Login' });
-  });
+// TODO: remove this function when flash testing is done
+router.get('/test-flash', (req, res) => {
+  req.flash('success', 'Wassup!');
+  req.flash('success', 'Wassup! 2');
+  req.flash('info', 'Wassup!');
+  res.redirect('/');
+});
 
-  app.post(
-    '/login',
-    passport.authenticate('local-login', {
-      successRedirect: '/profile',
-      failureRedirect: '/login',
-      failureFlash: true
-    })
-  );
+router.get('/login', userController.loginForm);
 
-  app.get('/signup', (req, res) => {
-    res.render('signup', { title: 'Signup' });
-  });
+router.post('/login', authController.login);
 
-  app.post(
-    '/signup',
-    passport.authenticate('local-signup', {
-      successRedirect: '/profile',
-      failureRedirect: '/signup',
-      failureFlash: true
-    })
-  );
+router.get('/logout', authController.logout);
 
-  // Only logged in users can visit this page
-  app.get('/profile', isLoggedIn, (req, res) => {
-    res.render('profile', { title: 'Profile', user: req.user });
-  });
+router.get('/signup', userController.signupForm);
 
-  app.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
-  });
+router.post(
+  '/signup',
+  userController.validateSignUp,
+  userController.signup,
+  authController.login
+);
 
-  // app middleware to make sure if a user is logged in
-  function isLoggedIn (req, res, next) {
-    if (req.isAuthenticated()) {
-      return next();
-    }
+// Only logged in users can visit this page
+router.get('/profile', authController.isLoggedIn, userController.profile);
 
-    res.redirect('/');
-  }
-};
+router.get('/account', authController.isLoggedIn, userController.account);
+
+router.post('/account', userController.updateAccount);
+
+router.post('/account/forgot', authController.forgot);
+
+module.exports = router;

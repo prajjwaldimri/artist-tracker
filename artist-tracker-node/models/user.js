@@ -1,35 +1,29 @@
 const mongoose = require('mongoose');
+mongoose.promise = global.Promise; // Tells mongoose to use ES6 promises
 const passportLocalMongoose = require('passport-local-mongoose');
 const mongodbErrorHandler = require('mongoose-mongodb-errors');
-const bcrypt = require('bcrypt-nodejs');
+const validator = require('validator');
+const md5 = require('md5');
 
 const userSchema = new mongoose.Schema({
-  local: {
-    username: {
-      unique: true,
-      type: String,
-      lowercase: true,
-      trim: true,
-      required: 'Username is required mate!'
-    },
-    password: {
-      type: String,
-      required: 'No fking way you are gonna login without a password'
-    }
+  email: {
+    type: String,
+    unique: true,
+    lowercase: true,
+    trim: true,
+    validate: [validator.isEmail, 'Not a valid email']
   }
 });
 
-userSchema.plugin(passportLocalMongoose, { usernameField: 'username' });
+userSchema.virtual('gravatar').get(function () {
+  var hash = 0;
+  if (this.email) {
+    hash = md5(this.email);
+  }
+  return `https://gravatar.com/avatar/${hash}?s=200`;
+});
+
+userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(mongodbErrorHandler);
-
-// Generate Hash
-userSchema.methods.generateHash = function (password) {
-  return bcrypt.hashSync(password);
-};
-
-// Check for valid password
-userSchema.methods.isValidPassword = function (password) {
-  return bcrypt.compareSync(password, this.local.password);
-};
 
 module.exports = mongoose.model('User', userSchema);
