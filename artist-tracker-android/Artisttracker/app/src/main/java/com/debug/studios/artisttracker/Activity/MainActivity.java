@@ -1,15 +1,21 @@
 package com.debug.studios.artisttracker.Activity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.wifi.aware.PublishConfig;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-
+import android.widget.FrameLayout;
 
 
 import com.debug.studios.artisttracker.Fragments.HomeFragment;
@@ -33,20 +39,26 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 
 public class MainActivity extends AppCompatActivity{
-
+    public ViewPager viewPager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        viewPager = findViewById(R.id.viewpager);
 
-        // new DrawerBuilder().withActivity(this).build();
-        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("HOME");
-        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName("LOG IN");
 
-//create the drawer and remember the `Drawer` result object
+
+
+        // Navigation Drawer
+        final PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("HOME");
+        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName("SIGN IN");
+        SecondaryDrawerItem item3 = new SecondaryDrawerItem().withIdentifier(3).withName("SIGN UP");
+        SecondaryDrawerItem item4 = new SecondaryDrawerItem().withIdentifier(4).withName("ABOUT US");
+
+
 
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
@@ -61,35 +73,51 @@ public class MainActivity extends AppCompatActivity{
                     }
                 })
                 .build();
-
-        Drawer result = new DrawerBuilder().withAccountHeader(headerResult)
+        //Builed Drawer and add to the Activity
+        final Drawer result = new DrawerBuilder().withAccountHeader(headerResult)
                 .withActivity(this)
                 .withToolbar(myToolbar)
                 .addDrawerItems(
                         item1,
                         new DividerDrawerItem(),
                         item2,
-                        new SecondaryDrawerItem().withName("Home")
+                        new SecondaryDrawerItem().withName("SIGN IN"),
+                        item3,
+                        new SecondaryDrawerItem().withName("SIGN UP"),
+                        item4,
+                        new SecondaryDrawerItem().withName("ABOUT US")
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 
 
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        // do something with the clicked item :D
+                        if (drawerItem != null){
+                            Intent intent = null;
+                            if (drawerItem.getIdentifier()==1){
+                                intent = new Intent(MainActivity.this,HomeFragment.class);
+                            }else if (drawerItem.getIdentifier()== 2){
+                                intent = new Intent(MainActivity.this,LoginFragment.class);
+                            }
+
+                            if (intent != null){
+                                MainActivity.this.startActivity(intent);
+                            }
+                        }
 
 
-                        return true;
+                        return false;
                     }
                 })
                 .build();
 
-
+/*
         result.getActionBarDrawerToggle().setDrawerIndicatorEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         result.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
+        */
 
     }
 

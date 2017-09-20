@@ -37,6 +37,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:26.0.0'
     compile 'com.android.support:support-annotations:26.+'
     compile 'com.android.support:design:26.+'
+    compile "com.mikepenz:iconics-core:2.9.3@aar"
     compile('com.mikepenz:materialdrawer:5.9.5@aar') {
         transitive = true
     }
