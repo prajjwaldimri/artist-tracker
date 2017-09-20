@@ -28,6 +28,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+    compile('com.mikepenz:materialdrawer:5.9.5@aar') {
+        transitive = true
+    }
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
     compile 'com.github.kittinunf.fuel:fuel-android:1.10.0'
@@ -37,9 +40,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:26.0.0'
     compile 'com.android.support:support-annotations:26.+'
     compile 'com.android.support:design:26.+'
-    compile "com.mikepenz:iconics-core:2.9.3@aar"
-    compile('com.mikepenz:materialdrawer:5.9.5@aar') {
-        transitive = true
-    }
+    compile 'com.mikepenz:iconics-core:2.9.3@aar'
     testCompile 'junit:junit:4.12'
 }

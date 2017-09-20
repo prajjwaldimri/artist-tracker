@@ -53,10 +53,6 @@ public class MainActivity extends AppCompatActivity{
 
 
         // Navigation Drawer
-        final PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("HOME");
-        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName("SIGN IN");
-        SecondaryDrawerItem item3 = new SecondaryDrawerItem().withIdentifier(3).withName("SIGN UP");
-        SecondaryDrawerItem item4 = new SecondaryDrawerItem().withIdentifier(4).withName("ABOUT US");
 
 
 
@@ -78,14 +74,11 @@ public class MainActivity extends AppCompatActivity{
                 .withActivity(this)
                 .withToolbar(myToolbar)
                 .addDrawerItems(
-                        item1,
-                        new DividerDrawerItem(),
-                        item2,
-                        new SecondaryDrawerItem().withName("SIGN IN"),
-                        item3,
-                        new SecondaryDrawerItem().withName("SIGN UP"),
-                        item4,
-                        new SecondaryDrawerItem().withName("ABOUT US")
+
+                        new PrimaryDrawerItem().withName("HOME").withIdentifier(1),
+                        new SecondaryDrawerItem().withName("SIGN IN").withIdentifier(2),
+                        new SecondaryDrawerItem().withName("SIGN UP").withIdentifier(3),
+                        new SecondaryDrawerItem().withName("ABOUT US").withIdentifier(4)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 
