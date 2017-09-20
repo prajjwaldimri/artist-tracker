@@ -12,6 +12,7 @@ const session = require('express-session');
 
 const helpers = require('./helpers');
 const routes = require('./routes/index');
+const errorHandlers = require('./handlers/errorHandlers');
 require('./handlers/passport');
 
 // G-zip compression
@@ -55,5 +56,11 @@ app.use((req, res, next) => {
 
 // Delegate all routing responsibility to routes module.
 app.use('/', routes);
+
+// If above routes do not work, we send the user to 404
+app.use(errorHandlers.notFound);
+
+// Handling production errors
+app.use(errorHandlers.productionErrors);
 
 module.exports = app;

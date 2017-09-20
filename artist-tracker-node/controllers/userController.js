@@ -15,6 +15,10 @@ exports.profile = (req, res) => {
   res.render('profile', { title: 'Profile' });
 };
 
+exports.account = (req, res) => {
+  res.render('account', { title: 'Edit Account' });
+};
+
 // Middleware that validates the signup form
 exports.validateSignUp = (req, res, next) => {
   req.sanitizeBody('username');
@@ -46,6 +50,7 @@ exports.validateSignUp = (req, res, next) => {
   next();
 };
 
+// Signup The user
 exports.signup = async (req, res, next) => {
   console.log(req.body);
   const user = new User({ username: req.body.username, email: req.body.email });
@@ -55,10 +60,7 @@ exports.signup = async (req, res, next) => {
   next();
 };
 
-exports.account = (req, res) => {
-  res.render('account', { title: 'Edit Account' });
-};
-
+// Updates the name or email for any user
 exports.updateAccount = async (req, res) => {
   const updates = {
     name: req.body.username,
