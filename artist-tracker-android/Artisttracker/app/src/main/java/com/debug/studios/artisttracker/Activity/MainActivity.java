@@ -26,6 +26,7 @@ import com.github.kittinunf.fuel.core.FuelError;
 import com.github.kittinunf.fuel.core.Handler;
 import com.github.kittinunf.fuel.core.Request;
 import com.github.kittinunf.fuel.core.Response;
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -75,10 +76,10 @@ public class MainActivity extends AppCompatActivity{
                 .withToolbar(myToolbar)
                 .addDrawerItems(
 
-                        new PrimaryDrawerItem().withName("HOME").withIdentifier(1),
-                        new SecondaryDrawerItem().withName("SIGN IN").withIdentifier(2),
-                        new SecondaryDrawerItem().withName("SIGN UP").withIdentifier(3),
-                        new SecondaryDrawerItem().withName("ABOUT US").withIdentifier(4)
+                        new PrimaryDrawerItem().withName("HOME").withIdentifier(1).withIcon(GoogleMaterial.Icon.gmd_home),
+                        new SecondaryDrawerItem().withName("SIGN IN").withIdentifier(2).withIcon(GoogleMaterial.Icon.gmd_sign_in),
+                        new SecondaryDrawerItem().withName("SIGN UP").withIdentifier(3).withIcon(GoogleMaterial.Icon.gmd_sign_in),
+                        new SecondaryDrawerItem().withName("ABOUT US").withIdentifier(4).withIcon(GoogleMaterial.Icon.gmd_info)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 
