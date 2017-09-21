@@ -1,21 +1,31 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt-nodejs');
+mongoose.promise = global.Promise; // Tells mongoose to use ES6 promises
+const passportLocalMongoose = require('passport-local-mongoose');
+const mongodbErrorHandler = require('mongoose-mongodb-errors');
+const validator = require('validator');
+const md5 = require('md5');
 
 const userSchema = new mongoose.Schema({
-  local: {
-    username: String,
-    password: String
-  }
+  email: {
+    type: String,
+    unique: true,
+    lowercase: true,
+    trim: true,
+    validate: [validator.isEmail, 'Not a valid email']
+  },
+  resetPasswordToken: String,
+  resetPasswordExpires: Date
 });
 
-// Generate Hash
-userSchema.methods.generateHash = function (password) {
-  return bcrypt.hashSync(password);
-};
+userSchema.virtual('gravatar').get(function () {
+  var hash = 0;
+  if (this.email) {
+    hash = md5(this.email);
+  }
+  return `https://gravatar.com/avatar/${hash}?s=200`;
+});
 
-// Check for valid password
-userSchema.methods.isValidPassword = function (password) {
-  return bcrypt.compareSync(password, this.local.password);
-};
+userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(mongodbErrorHandler);
 
 module.exports = mongoose.model('User', userSchema);
