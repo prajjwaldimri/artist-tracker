@@ -3,22 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/login"
-    tools:context="com.debug.studios.artisttracker.Fragments.LoginFragment">
+    android:id="@+id/sync"
+    tools:context="Fragments.SyncFragment">
 
     <com.github.florent37.materialtextfield.MaterialTextField
-    android:layout_width="300dp"
-    android:layout_height="wrap_content"
-    app:mtf_labelColor="#666"
-
-   >
-
-    <EditText
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:hint="Email"
-        android:textColor="#333"
-        android:textSize="15sp" />
+        app:mtf_labelColor="#666"
+
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:textColor="#333"
+            android:textSize="15sp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -27,8 +27,6 @@
             android:textColor="#333"
             android:textSize="15sp" />
 
-
-
-</com.github.florent37.materialtextfield.MaterialTextField>
+    </com.github.florent37.materialtextfield.MaterialTextField>
 
 </FrameLayout>
