@@ -4,17 +4,7 @@ const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
-router.get('/', (req, res) => {
-  res.render('index', { title: 'Handlebars Up', body: 'Hello World!' });
-});
-
-// TODO: remove this function when flash testing is done
-router.get('/test-flash', (req, res) => {
-  req.flash('success', 'Wassup!');
-  req.flash('success', 'Wassup! 2');
-  req.flash('info', 'Wassup!');
-  res.redirect('/');
-});
+router.get('/', userController.index);
 
 router.get('/login', userController.loginForm);
 router.post('/login', authController.login);

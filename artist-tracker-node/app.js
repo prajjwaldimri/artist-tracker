@@ -50,7 +50,6 @@ app.use((req, res, next) => {
   res.locals.flashes = req.flash();
   res.locals.user = req.user || null;
   res.locals.currentYear = new Date().getFullYear();
-  console.log(req.user);
   next();
 });
 
