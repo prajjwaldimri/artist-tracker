@@ -1,24 +1,19 @@
 const path = require('path');
 const compression = require('compression');
 const express = require('express');
-const app = express();
+var app = express();
 const hbs = require('hbs');
-const mongoose = require('mongoose');
 const passport = require('passport');
-const chalk = require('chalk');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
 
 const helpers = require('./helpers');
-const configDB = require('./config/database');
-
-var PORT = process.env.PORT || 3000;
-
-// Connect to the database
-mongoose.connect(configDB.url);
-
-require('./config/passport')(passport);
+const routes = require('./routes/index');
+const errorHandlers = require('./handlers/errorHandlers');
+require('./handlers/passport');
 
 // G-zip compression
 app.use(compression());
@@ -27,16 +22,23 @@ app.use(compression());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(expressValidator());
+
 // Set the templating engine to http://handlebarsjs.com/
-app.set('view engine', 'hbs');
 hbs.registerPartials(path.join(__dirname, '/views/partials'));
+app.set('view engine', 'hbs');
 
 // Passport settings
 app.use(
-  session({ secret: 'Why So Serious?', resave: false, saveUninitialized: true })
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true
+  })
 );
 app.use(flash());
 app.use(passport.initialize());
+app.use(cookieParser());
 app.use(passport.session());
 
 // Serve static JS and css files
@@ -45,14 +47,20 @@ app.use(express.static(path.join(__dirname, 'dist')));
 // Pass variables to all our templates
 app.use((req, res, next) => {
   res.locals.h = helpers;
+  res.locals.flashes = req.flash();
+  res.locals.user = req.user || null;
+  res.locals.currentYear = new Date().getFullYear();
+  console.log(req.user);
   next();
 });
 
 // Delegate all routing responsibility to routes module.
+app.use('/', routes);
 
-require('./routes/index.js')(app, passport);
+// If above routes do not work, we send the user to 404
+app.use(errorHandlers.notFound);
 
-// Up the App
-app.listen(PORT, function () {
-  console.log(chalk.bgRed.underline(`Listening on PORT: ${PORT}!`));
-});
+// Handling production errors
+app.use(errorHandlers.productionErrors);
+
+module.exports = app;
