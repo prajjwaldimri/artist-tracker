@@ -9,6 +9,7 @@ body{background-image: url(img/marbel.jpg);
     background-repeat: none;
     background-size: cover;
 
+
 }
 
 input:focus ~ label, input.used ~ label {
