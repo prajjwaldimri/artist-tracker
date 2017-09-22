@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+
         Fragment fragment = null;
         Class FragmentClass;
 
