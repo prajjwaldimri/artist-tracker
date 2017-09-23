@@ -1,1 +1,1 @@
-web: node --prefix artist-tracker-node
+web: node artist-tracker-node/start.js
