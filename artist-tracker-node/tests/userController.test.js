@@ -60,7 +60,9 @@ describe('User Controller(userController.js)', () => {
     });
   });
   after(done => {
-    User.remove({});
-    done();
+    User.remove({}, err => {
+      if (err) throw err;
+      done();
+    });
   });
 });
