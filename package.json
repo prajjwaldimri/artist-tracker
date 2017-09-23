@@ -1,5 +1,6 @@
 {
 "name": "artist-tracker",
+"engines": "8.5.x",
 "version": "0.1.0",
 "scripts": {
 "postinstall": "npm install --prefix artist-tracker-node"
