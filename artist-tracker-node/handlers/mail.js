@@ -1,8 +1,8 @@
 const htmlToText = require('html-to-text');
-var mailgun = require('mailgun-js')({
-  apiKey: process.env.MAILGUN_API_KEY,
-  domain: process.env.MAILGUN_DOMAIN
-});
+let mailgun = require('mailgun-js');
+
+mailgun.apiKey = process.env.MAILGUN_API_KEY;
+mailgun.domain = process.env.MAILGUN_DOMAIN;
 
 exports.send = options => {
   const html = `<h4>Your reset link is</h4> ${options.resetURL}`;
