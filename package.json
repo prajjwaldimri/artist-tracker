@@ -5,6 +5,7 @@
 },
 "version": "0.1.0",
 "scripts": {
+"start": "node artist-tracker-node/start.js",
 "postinstall": "npm install --prefix artist-tracker-node"
 }
 }
