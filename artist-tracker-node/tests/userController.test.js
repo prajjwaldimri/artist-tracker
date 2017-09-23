@@ -6,8 +6,10 @@ const User = require('../models/user');
 
 describe('User Controller(userController.js)', () => {
   beforeEach(done => {
-    User.remove({});
-    done();
+    User.remove({}, err => {
+      if (err) throw err;
+      done();
+    });
   });
   describe('Signup Tests', () => {
     it('should succeed when sending correct data through form', function (done) {
