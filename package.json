@@ -1,0 +1,7 @@
+{
+"name": "artist-tracker",
+"version": "0.1.0",
+"scripts": {
+"postinstall": "npm install --prefix artist-tracker-node"
+}
+}
