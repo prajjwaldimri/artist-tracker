@@ -11,6 +11,9 @@ body{background-image: url(img/marbel.jpg);
 
 
 }
+.ch{
+  border: 1px solid red;
+}
 
 input:focus ~ label, input.used ~ label {
 	top: -20px;
@@ -25,4 +28,14 @@ input:focus ~ label, input.used ~ label {
   left: 0;
   height: 100%;
   width: 100%;
+}
+.row{
+  margin-top: -5px;
+}
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
 }
