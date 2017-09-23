@@ -2,6 +2,10 @@
   "name": "artist-tracker",
   "version": "0.0.1",
   "description": "Web Api for Artist Tracker",
+  "engines": {
+    "node": "8.5.x",
+    "npm": "5.4.x"
+  },
   "main": "start.js",
   "scripts": {
     "start": "node start.js",
