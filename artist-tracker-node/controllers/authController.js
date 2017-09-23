@@ -9,7 +9,7 @@ const mail = require('../handlers/mail');
 exports.login = passport.authenticate('local', {
   failureRedirect: '/login',
   failureFlash: 'Something went wrong!',
-  successRedirect: '/',
+  successRedirect: '/profile',
   successFlash: 'Sup'
 });
 
@@ -27,7 +27,7 @@ exports.isLoggedIn = (req, res, next) => {
     return;
   }
   req.flash('You need to be logged in to do this');
-  res.redirect('/login');
+  res.status(401).redirect('/login');
 };
 
 // Method to initiate the forgot password request

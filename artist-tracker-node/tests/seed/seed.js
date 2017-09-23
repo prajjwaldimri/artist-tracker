@@ -1,27 +1,26 @@
 const User = require('../../models/user');
 
-const users = [
-  new User({
-    username: 'test1',
-    password: 'test',
-    email: 'test30@test.com'
-  }),
-  new User({
-    username: 'test2',
-    password: 'test',
-    email: 'test10@test.com'
-  })
-];
-
 const populateUsers = function (done) {
   this.timeout(30000);
   User.remove({})
     .then(() => {
-      users.forEach(user => {
-        user.save();
-      });
-      done();
+      User.register(
+        { username: 'test2', email: 'test2@gmail.com' },
+        'test',
+        (err, user) => {
+          if (err) throw err;
+        }
+      );
+
+      User.register(
+        { username: 'test1', email: 'test1@outlook.com' },
+        'test',
+        (err, user) => {
+          if (err) throw err;
+        }
+      );
     })
+    .then(() => done())
     .catch(err => {
       done(err);
     });

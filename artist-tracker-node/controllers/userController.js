@@ -44,7 +44,7 @@ exports.validateSignUp = (req, res, next) => {
   const errors = req.validationErrors();
   if (errors) {
     req.flash('error', errors.map(err => err.msg));
-    res.status(401).render('signup', {
+    res.status(422).render('signup', {
       title: 'Signup',
       body: req.body,
       flashes: req.flash()

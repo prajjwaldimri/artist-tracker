@@ -15,7 +15,7 @@ describe('Website Routes Testing(routes.js)', () => {
     });
   });
   describe('/profile Test', () => {
-    it('should return 302 redirection on GET /profile without logging in', done => {
+    it('should be redirected on GET /profile without logging in', done => {
       request(app)
         .get('/profile')
         .expect(302)
@@ -23,7 +23,7 @@ describe('Website Routes Testing(routes.js)', () => {
     });
   });
   describe('/account Test', () => {
-    it('should return 302 redirection on GET /account without logging in', done => {
+    it('should be redirected on GET /account without logging in', done => {
       request(app)
         .get('/account')
         .expect(302)
