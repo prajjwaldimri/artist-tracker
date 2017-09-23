@@ -1,4 +1,4 @@
-/* global it describe beforeEach */
+/* global it describe beforeEach after */
 
 const request = require('supertest');
 const app = require('../start');
@@ -57,6 +57,12 @@ describe('User Controller(userController.js)', () => {
             }
           });
         });
+    });
+  });
+  after(done => {
+    User.remove({}, err => {
+      if (err) throw err;
+      done();
     });
   });
 });

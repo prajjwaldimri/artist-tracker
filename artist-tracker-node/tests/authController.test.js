@@ -1,8 +1,9 @@
-/* global it describe beforeEach */
+/* global it describe beforeEach after */
 
 const request = require('supertest');
 const app = require('../start');
 const seed = require('./seed/seed');
+const User = require('../models/user');
 
 describe('Auth Controller(authController.js)', () => {
   beforeEach(seed.populateUsers);
@@ -31,6 +32,13 @@ describe('Auth Controller(authController.js)', () => {
         .expect(302)
         .expect('Location', '/login')
         .end(done);
+    });
+  });
+
+  after(done => {
+    User.remove({}, err => {
+      if (err) throw err;
+      done();
     });
   });
 });
