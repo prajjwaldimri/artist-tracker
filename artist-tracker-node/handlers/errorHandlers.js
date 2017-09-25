@@ -12,9 +12,7 @@ exports.catchErrors = fn => {
 If no route is found then redirect the users to the 404 page
  */
 exports.notFound = (req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  res.status(404).render('404');
 };
 
 /*

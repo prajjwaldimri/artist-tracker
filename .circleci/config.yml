@@ -37,7 +37,4 @@ jobs:
             - artist-tracker-node/node_modules
           key: v1-dependencies-{{ checksum "artist-tracker-node/package.json" }}
         
-      # run tests!
-      - run: 
-          command: npm test
-          working_directory: artist-tracker-node
+      

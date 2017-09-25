@@ -3,12 +3,16 @@ mongoose.promise = global.Promise; // Tells mongoose to use ES6 promises
 const User = mongoose.model('User');
 const promisify = require('es6-promisify');
 
+exports.index = (req, res) => {
+  res.render('index', { title: 'Artist Tracker' });
+};
+
 exports.loginForm = (req, res) => {
   res.render('login', { title: 'Login' });
 };
 
 exports.signupForm = (req, res) => {
-  res.render('signup-test', { title: 'Signup' });
+  res.render('signup', { title: 'Signup' });
 };
 
 exports.profile = (req, res) => {
@@ -40,7 +44,7 @@ exports.validateSignUp = (req, res, next) => {
   const errors = req.validationErrors();
   if (errors) {
     req.flash('error', errors.map(err => err.msg));
-    res.render('signup-test', {
+    res.status(422).render('signup', {
       title: 'Signup',
       body: req.body,
       flashes: req.flash()
@@ -52,10 +56,8 @@ exports.validateSignUp = (req, res, next) => {
 
 // Signup The user
 exports.signup = async (req, res, next) => {
-  console.log(req.body);
   const user = new User({ username: req.body.username, email: req.body.email });
   const register = promisify(User.register, User);
-  console.log(user);
   await register(user, req.body.password);
   next();
 };
