@@ -13,6 +13,7 @@ if (process.env.NODE_ENV === 'test') {
 
 // Require Models for mongoose
 require('./models/user');
+require('./models/artist');
 
 const app = require('./app');
 
