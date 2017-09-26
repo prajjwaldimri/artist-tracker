@@ -13,12 +13,13 @@ const userSchema = new mongoose.Schema({
     trim: true,
     validate: [validator.isEmail, 'Not a valid email']
   },
+  fav_artists: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Artist' }],
   resetPasswordToken: String,
   resetPasswordExpires: Date
 });
 
 userSchema.virtual('gravatar').get(function () {
-  var hash = 0;
+  let hash = 0;
   if (this.email) {
     hash = md5(this.email);
   }

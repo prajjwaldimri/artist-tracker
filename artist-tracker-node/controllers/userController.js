@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.promise = global.Promise; // Tells mongoose to use ES6 promises
 const User = mongoose.model('User');
-const promisify = require('es6-promisify');
 
 exports.index = (req, res) => {
   res.render('index', { title: 'Artist Tracker' });
@@ -57,8 +56,9 @@ exports.validateSignUp = (req, res, next) => {
 // Signup The user
 exports.signup = async (req, res, next) => {
   const user = new User({ username: req.body.username, email: req.body.email });
-  const register = promisify(User.register, User);
-  await register(user, req.body.password);
+  User.register(user, req.body.password, (err, user) => {
+    if (err) throw err;
+  });
   next();
 };
 
