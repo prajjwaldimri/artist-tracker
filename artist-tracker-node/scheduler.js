@@ -14,22 +14,26 @@ mongoose.connect(process.env.MLAB_DB);
 const Artist = require('./models/artist');
 
 // Get all the artits ids currently in the database
-Artist.find({})
-  .select('discogs_id')
-  .exec(async (err, artists) => {
-    if (err) {
-      throw err;
-    }
-    for (var i = 0; i < artists.length; i++) {
-      // Query the discogs api for newer releases for the artists
-      let newReleases = await ReleaseChecker(
-        artists[i].discogs_id,
-        artists[i].latest_release_id
-      );
-      // Send all the emails for this artist
-      await MailReleases(newReleases, artists[i]);
-    }
-  });
+(() => {
+  Artist.find({})
+    .select('discogs_id')
+    .exec(async (err, artists) => {
+      if (err) {
+        throw err;
+      }
+      for (var i = 0; i < artists.length; i++) {
+        // Query the discogs api for newer releases for the artists
+        let newReleases = await ReleaseChecker(
+          artists[i].discogs_id,
+          artists[i].latest_release_id
+        );
+        // Send all the emails for this artist
+        await MailReleases(newReleases, artists[i]);
+      }
+      console.log(chalk.green('Scheduler Complete'));
+      process.exit();
+    });
+})();
 
 // Checks for new releases from an artist and returns the new releases about which the users should be notified
 const ReleaseChecker = function (artistId, releaseId) {

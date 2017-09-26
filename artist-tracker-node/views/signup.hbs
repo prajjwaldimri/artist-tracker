@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <title>{{title}}</title>
@@ -11,6 +12,7 @@
   <link rel="stylesheet" type="text/css" href="/css/main.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
+
 <body>
   <!--Login Form -->
   <!-- <form action="/signup" method="post">
@@ -20,38 +22,39 @@
   </form> -->
   <div class="container-fluid ">
     <div class="row wrapper ">
-        <div class="col s12 m12 l4 offset-l4" >
-          <div class="card " style="margin-top:20%" >
-            <div class="card-content dark-primary-color center-align" style="height:100px">
+      <div class="col s12 m12 l4 offset-l4">
+        <div class="card " style="margin-top:20%">
+          <div class="card-content dark-primary-color center-align" style="height:100px">
             <h4 class="text-primary-color titleheading">ARTIST TRACKER</h4>
           </div>
-            <div>
-                <form action="/signup" method="post" autocomplete= "off" name="signUpForm">
+          <div>
+            <form action="/signup" method="post" autocomplete="off" name="signUpForm">
               <div class="row ">
-                <div class=" col s1 m1 l1 input-field " >
+                <div class=" col s1 m1 l1 input-field ">
                   <i class="material-icons small" style="margin : 10px 0 0 0px; color:gray">account_box</i>
-                  </div>
+                </div>
                 <div class="input-field col  s11 m11 l11">
-                  <input id="example" name="username" type="text" class="validate" data-validation="length "  required="" pattern="[A-z|0-9][A-z][A-z|0-9][A-z|0-9][A-z|0-9]*" maxlength="30" oninvalid="setCustomValidity('Enter alphanumeric character(min-length:4) ')"onchange="try{setCustomValidity('')}catch(e){}"  >
+                  <input id="example" name="username" type="text" class="validate" data-validation="length " required pattern="[A-z|0-9][A-z][A-z|0-9][A-z|0-9][A-z|0-9]*" maxlength="30" oninvalid="setCustomValidity('Enter alphanumeric character(min-length:4) ')" onchange="try{setCustomValidity('')}catch(e){}">
                   <label for="uname">UserName</label>
                 </div>
               </div>
-                <!-- email field -->
+              <!-- email field -->
               <div class="row ">
-                  <div class=" col s1 m1 l1 input-field " >
-                        <i class="material-icons small" style="margin : 10px 0 0 0px; color:gray">email</i>
+                <div class=" col s1 m1 l1 input-field ">
+                  <i class="material-icons small" style="margin : 10px 0 0 0px; color:gray">email</i>
                 </div>
                 <div class="input-field col  s11 m11 l11">
-                 <input id="example" name="username" type="email" class="validate" data-validation="length " pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  oninvalid="setCustomValidity('Invalid Email (fill in proper format)')" onchange="try{setCustomValidity('')}catch(e){}" maxlength="30"  >
+                  <input id="example" name="email" type="email" class="validate" data-validation="length " pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" oninvalid="setCustomValidity('Invalid Email (fill in proper format)')" onchange="try{setCustomValidity('')}catch(e){}"
+                    maxlength="30">
                   <label for="email">Email(optional)</label>
                 </div>
               </div>
               <!--   Password field -->
               <div class="row">
                 <div class=" col s1 m1 l1 input-field ">
-                      <i class="material-icons small" style="margin : 10px 0 0 0px;color:gray">lock</i>
+                  <i class="material-icons small" style="margin : 10px 0 0 0px;color:gray">lock</i>
                 </div>
-                  <div class="input-field col  s11 m11 l11 ">
+                <div class="input-field col  s11 m11 l11 ">
                   <input id="password" type="password" class="validate" name="password" required="" maxlength="15" aria-required="true" pattern=".{4,}" maxlength="20">
                   <label for="password">Password</label>
                 </div>
@@ -59,10 +62,10 @@
               <!--   Password Confom field -->
               <div class="row">
                 <div class=" col s1 m1 l1 input-field ">
-                      <i class="material-icons small" style="margin : 10px 0 0 0px;color:gray">lock</i>
+                  <i class="material-icons small" style="margin : 10px 0 0 0px;color:gray">lock</i>
                 </div>
-                  <div class="input-field col  s11 m11 l11 ">
-                  <input id="confirm_password" type="password" class="validate" name="confirm_password" required="" maxlength="15" aria-required="true"  maxlength="20" onchange="try{setCustomValidity('')}catch(e){}">
+                <div class="input-field col  s11 m11 l11 ">
+                  <input id="confirm_password" type="password" class="validate" name="password-confirm" required="" maxlength="15" aria-required="true" maxlength="20" onchange="try{setCustomValidity('')}catch(e){}">
                   <label for="password">Password</label>
                 </div>
               </div>
@@ -74,17 +77,17 @@
                   <div class=" " style=" height:30px;width:auto">
                     <p id="msg" class="right-align primary-text-color blink_me" style="font-weight:bold"> </p>
                   </div>
-              </div>
+                </div>
               </div>
             </form>
-            </div>
           </div>
         </div>
       </div>
     </div>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" href="/js/materialize.min.js" src="login.js"></script>
-    <script type="text/javascript">
+  </div>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" href="/js/materialize.min.js" src="login.js"></script>
+  <script type="text/javascript">
     $(window, document, undefined).ready(function() {
       $('input').blur(function() {
         var $this = $(this);
@@ -94,26 +97,28 @@
           $this.removeClass('used');
       });
     });
-      // password Match Script
-    var password = document.getElementById("password")
-    , confirm_password = document.getElementById("confirm_password");
-    var message=document.getElementById("msg");
-    function validatePassword(){
-    if(password.value != confirm_password.value) {
+    // password Match Script
+    var password = document.getElementById("password"),
+      confirm_password = document.getElementById("confirm_password");
+    var message = document.getElementById("msg");
 
-    confirm_password.setCustomValidity("Mismatch password");
-    message.innerHTML="Mismatch password"
+    function validatePassword() {
+      if (password.value != confirm_password.value) {
+
+        confirm_password.setCustomValidity("Mismatch password");
+        message.innerHTML = "Mismatch password"
 
 
-    } else {
-     confirm_password.setCustomValidity("");
-      message.innerHTML="";
+      } else {
+        confirm_password.setCustomValidity("");
+        message.innerHTML = "";
+      }
+
+      confirm_password.onkeyup = validatePassword;
+      confirm_password.onkeydown = validatePassword;
+      password.onchange = validatePassword;
     }
-
-    confirm_password.onkeyup=validatePassword;
-    confirm_password.onkeydown=validatePassword;
-    password.onchange = validatePassword;
-    }
-    </script>
+  </script>
 </body>
+
 </html>

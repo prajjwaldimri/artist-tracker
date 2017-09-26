@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.virtual('gravatar').get(function () {
-  var hash = 0;
+  let hash = 0;
   if (this.email) {
     hash = md5(this.email);
   }
