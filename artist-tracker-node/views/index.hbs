@@ -5,7 +5,7 @@
 </head>
 
 <body>
-
+{{> navbar}}
   {{#if flashes}}
     {{#each flashes.success}}
       <h3>Success: {{this}}</h3>
@@ -19,7 +19,6 @@
     <img src='{{user.gravatar}}' alt="">
   {{/if}}
 
-  {{> footer}}
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" href="/js/materialize.min.js"></script>

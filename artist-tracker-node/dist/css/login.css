@@ -4,25 +4,20 @@ body{background-image: url(img/marbel.jpg);
 }
 /*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1haW4uY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLEtBQ0UsV0FBWSIsImZpbGUiOiJtYWluLmNzcyIsInNvdXJjZXNDb250ZW50IjpbXX0= */
 .costom_image{
-
-  background-image: url(img/fabric-wallpaper3.jpg);
+    background-image: url(img/fabric-wallpaper3.jpg);
     background-repeat: none;
     background-size: cover;
-
-
 }
 .ch{
   border: 1px solid red;
 }
-
-input:focus ~ label, input.used ~ label {
+ input:focus ~ label, input.used ~ label {
 	top: -20px;
   transform: scale(.75); left: -2px;
 	/* font-size: 14px; */
 	color: #4a89dc;
 }
 .container  {
-
   position: absolute;
   top: 0;
   left: 0;
@@ -35,7 +30,6 @@ input:focus ~ label, input.used ~ label {
 .blink_me {
   animation: blinker 1s linear infinite;
 }
-
 @keyframes blinker {
   50% { opacity: 0; }
 }
