@@ -25,7 +25,7 @@
 
             </div>
           <div class="card-conten  " >
-              <form method="post" autocomplete= "off">
+              <form method="post" autocomplete= "off" >
             <div class="row ">
 
               <div class=" col s1 m1 l1 input-field " >
@@ -34,7 +34,7 @@
               </div>
               <div class="input-field col  s11 m11 l11">
 
-              <input id="example" name="username" type="text" class="validate" data-validation="length "  required="" pattern="[A-z|0-9][A-z][A-z|0-9]*" maxlength="30" oninvalid="setCustomValidity('Enter only alphanumeric character ')"onchange="try{setCustomValidity('')}catch(e){}"  >
+              <input id="example" name="username" type="text" class="validate" data-validation="length "  required="" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" maxlength="30" oninvalid="setCustomValidity('Enter only alphanumeric character ')"onchange="try{setCustomValidity('')}catch(e){}"  >
                 <label for="uname">UserName</label>
               </div>
             </div>
@@ -57,7 +57,7 @@
                   <a class="center secondary-text-color" href="#">Forget Password ?</a>
 
                   <div class="right-align ">
-                  <a class="btn-floating btn-large waves-effect waves-light default-primary-color " title="Need Acount"><i class="material-icons">add</i></a>
+                  <a class="btn-floating btn-large waves-effect waves-light default-primary-color " href="signup" title="Need Acount"><i class="material-icons">add</i></a>
                 </div>
               </div>
             </div>
