@@ -21,25 +21,18 @@
   </form> -->
   <div class="container-fluid ">
     <div class="row wrapper ">
-<<<<<<< HEAD
         <div class="col s12 m12 l6 offset-l3" >
           <div class="card " style="margin-top:5%" >
             <div class="card-content dark-primary-color center-align" style="height:100px">
-=======
-      <div class="col s12 m12 l4 offset-l4">
-        <div class="card " style="margin-top:20%">
-          <div class="card-content dark-primary-color center-align" style="height:100px">
->>>>>>> 9fdb5cd4279714fa7d7d454d430d5c981e82e1bc
             <h4 class="text-primary-color titleheading">ARTIST TRACKER</h4>
           </div>
-          <div>
             <form action="/signup" method="post" autocomplete="off" name="signUpForm">
               <div class="row ">
                 <div class=" col s1 m1 l1 input-field ">
                   <i class="material-icons small" style="margin : 10px 0 0 0px; color:gray">account_box</i>
                 </div>
                 <div class="input-field col  s11 m11 l11">
-                  <input id="example" name="username" type="text" class="validate" data-validation="length " required pattern="[A-z|0-9][A-z][A-z|0-9][A-z|0-9][A-z|0-9]*" maxlength="30" oninvalid="setCustomValidity('Enter alphanumeric character(min-length:4) ')" onchange="try{setCustomValidity('')}catch(e){}">
+                  <input id="example" name="username" type="text" class="validate" data-validation="length " required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{4,12}$" maxlength="30" oninvalid="setCustomValidity('Enter alphanumeric character(min-length:4) ')" onchange="try{setCustomValidity('')}catch(e){}">
                   <label for="uname">UserName</label>
                 </div>
               </div>
@@ -69,15 +62,10 @@
                 <div class=" col s1 m1 l1 input-field ">
                   <i class="material-icons small" style="margin : 10px 0 0 0px;color:gray">lock</i>
                 </div>
-<<<<<<< HEAD
+
                   <div class="input-field col  s11 m11 l11 ">
                   <input id="confirm_password" type="password" class="validate" name="confirm_password" required="" maxlength="15" aria-required="true"  maxlength="20" onchange="try{setCustomValidity('')}catch(e){}">
                   <label for="password">Confirm Password</label>
-=======
-                <div class="input-field col  s11 m11 l11 ">
-                  <input id="confirm_password" type="password" class="validate" name="password-confirm" required="" maxlength="15" aria-required="true" maxlength="20" onchange="try{setCustomValidity('')}catch(e){}">
-                  <label for="password">Password</label>
->>>>>>> 9fdb5cd4279714fa7d7d454d430d5c981e82e1bc
                 </div>
               </div>
               <!-- button row -->
