@@ -3,6 +3,7 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
 const searchController = require('../controllers/searchController');
+const artistController = require('../controllers/artistController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
 router.get('/', userController.index);
@@ -36,7 +37,7 @@ router.post(
 router.post(
   '/account/addArtist',
   authController.isLoggedIn,
-  catchErrors(userController.addArtist)
+  catchErrors(artistController.addNewArtist)
 );
 
 router.get('/search/:artistName', catchErrors(searchController.search));

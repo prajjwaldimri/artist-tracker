@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.promise = global.Promise; // Tells mongoose to use ES6 promises
 const User = mongoose.model('User');
-const Artist = mongoose.model('Artist');
-const artistController = require('../controllers/artistController');
 
 exports.index = (req, res) => {
   // res.render('index', { title: 'Artist Tracker' });
@@ -81,28 +79,4 @@ exports.updateAccount = async (req, res) => {
   // Redirects to the previous page
   req.flash('success', 'Profile Updated!');
   res.redirect('back');
-};
-
-exports.addArtist = async (req, res) => {
-  let artist = await Artist.find({ discogs_id: req.body.artistId });
-
-  if (artist === null) {
-    artist = await artistController.saveArtist(req.body.artistId);
-  }
-
-  await Artist.findOneAndUpdate(
-    { _id: artist._id },
-    { $push: { fans: req.user._id } },
-    { new: true, runValidators: true, context: 'query' }
-  );
-
-  await User.findOneAndUpdate(
-    { _id: req.user._id },
-    { $push: { fav_artists: artist._id } },
-    { new: true, runValidators: true, context: 'query' }
-  );
-
-  // Redirects to the previous page
-  req.flash('success', 'Artist Added to your favorites!');
-  res.status(200);
 };
