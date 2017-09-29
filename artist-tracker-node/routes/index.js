@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
+const searchController = require('../controllers/searchController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
 router.get('/', userController.index);
@@ -19,6 +20,7 @@ router.post(
   authController.login
 );
 
+// Account related routes
 router.get('/profile', authController.isLoggedIn, userController.profile);
 
 router.get('/account', authController.isLoggedIn, userController.account);
@@ -30,5 +32,7 @@ router.post(
   authController.confirmedPasswords,
   catchErrors(authController.update)
 );
+
+router.get('/search/:artistName', catchErrors(searchController.search));
 
 module.exports = router;
