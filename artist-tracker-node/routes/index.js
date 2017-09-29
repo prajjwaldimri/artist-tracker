@@ -32,6 +32,12 @@ router.post(
   authController.confirmedPasswords,
   catchErrors(authController.update)
 );
+// POST artistName to this route to add it to a user's favorites
+router.post(
+  '/account/addArtist',
+  authController.isLoggedIn,
+  catchErrors(userController.addArtist)
+);
 
 router.get('/search/:artistName', catchErrors(searchController.search));
 
