@@ -59,6 +59,10 @@ app.use('/', routes);
 // If above routes do not work, we send the user to 404
 app.use(errorHandlers.notFound);
 
+if (process.env.NODE_ENV === 'development') {
+  app.use(errorHandlers.developmentErrors);
+}
+
 // Handling production errors
 app.use(errorHandlers.productionErrors);
 
