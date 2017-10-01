@@ -1,1 +1,1 @@
-$(document).ready(function(){$("ul.tabs").tabs()});
+$(document).ready(function(){$("ul.tabs").tabs(),$(".button-collapse").sideNav()});
