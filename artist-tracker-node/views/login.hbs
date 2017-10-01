@@ -9,38 +9,88 @@
 
   <div class="row">
     <div class="col s8 m4 offset-s2 offset-m4">
-      <div class="card medium blue-grey darken-3 z-depth-3" style="margin-top: 10%">
-        <div class="card-content white-text">
-          <span class="card-title center" style="font-weight: bold">MEMBER LOGIN</span>
+      <div class="card blue-grey darken-3 z-depth-3" style="margin-top: 8%">
+        <div class="card-tabs">
+          <ul class="tabs tabs-fixed-width tabs-transparent">
+            <li class="tab"><a class="active" href="#login">Login</a></li>
+            <li class="tab"><a href="#signup">Register</a></li>
+          </ul>
         </div>
-        <div class="row">
-          <form class="col s8 offset-s2" action="/login" method="post">
+        <div class="card-content" style="margin-top: 10%">
+          <!-- Login Form -->
+          <div id="login">
             <div class="row">
-              <div class="input-field white-text">
-                <input name="username" id="username" type="text" class="validate" required>
-                <label for="username">Username</label>
-              </div>
-            </div>
+              <form class="col s8 offset-s2" action="/login" method="post">
+                <div class="row">
+                  <div class="input-field white-text">
+                    <input name="username" id="username" type="text" class="validate" required>
+                    <label for="username">Username</label>
+                  </div>
+                </div>
 
+                <div class="row">
+                  <div class="input-field white-text">
+                    <input name="password" id="password" type="password" class="validate" required>
+                    <label for="password">Password</label>
+                  </div>
+                </div>
+
+                <div class="row center">
+                  <div class="input-field">
+                    <button class="btn waves-effect waves-light indigo" type="submit" name="action">LogIn <i class="material-icons right">send</i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!--Signup Form -->
+          <div id="signup">
             <div class="row">
-              <div class="input-field white-text">
-                <input name="password" id="password" type="password" class="validate" required>
-                <label for="password">Password</label>
-              </div>
-            </div>
+              <form class="col s8 offset-s2" action="/signup" method="post">
+                <div class="row">
+                  <div class="input-field white-text">
+                    <input name="username" id="signup_username" type="text" class="validate" required>
+                    <label for="signup_username">Username</label>
+                  </div>
+                </div>
 
-            <div class="row center">
-              <div class="input-field">
-                <button class="btn waves-effect waves-light indigo" type="submit" name="action">Submit <i class="material-icons right">send</i>
-                </button>
-              </div>
+                <div class="row">
+                  <div class="input-field white-text">
+                    <input name="email" id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field white-text">
+                    <input name="password" id="signup_password" type="password" class="validate" required>
+                    <label for="signup_password">Password</label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field white-text">
+                    <input name="password-confirm" id="password-confirm" type="password" class="validate" required>
+                    <label for="password-confirm">Confirm Password</label>
+                  </div>
+                </div>
+
+                <div class="row center">
+                  <div class="input-field">
+                    <button class="btn waves-effect waves-light indigo" type="submit" name="action">Register <i class="material-icons right">send</i>
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
 
         <div class="card-action center">
           <a href="#" style="margin-right: 0px">Forgot Password?</a>
         </div>
+
       </div>
     </div>
   </div>

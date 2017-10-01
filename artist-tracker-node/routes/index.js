@@ -13,11 +13,11 @@ router.post('/login', authController.login);
 
 router.get('/logout', authController.logout);
 
-router.get('/signup', userController.signupForm);
+router.get('/signup', userController.loginForm);
 router.post(
   '/signup',
   userController.validateSignUp,
-  catchErrors(userController.signup),
+  userController.signup,
   authController.login
 );
 

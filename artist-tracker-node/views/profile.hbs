@@ -5,9 +5,14 @@
 </head>
 
 <body>
-  <h3>User: {{user}}</h3>
+  {{> navbar}}
+
+  <h3>User: {{user}}</h3> {{> footer}}
+
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" href="/js/materialize.min.js"></script>
+
+  {{> toast}}
 </body>
 
 </html>

@@ -1,18 +1,15 @@
 const mongoose = require('mongoose');
 mongoose.promise = global.Promise; // Tells mongoose to use ES6 promises
 const User = mongoose.model('User');
+const promisify = require('es6-promisify');
 
 exports.index = (req, res) => {
   // res.render('index', { title: 'Artist Tracker' });
-  res.redirect('/login');
+  res.redirect('/profile');
 };
 
 exports.loginForm = (req, res) => {
-  res.render('login', { title: 'Login' });
-};
-
-exports.signupForm = (req, res) => {
-  res.render('signup', { title: 'Signup' });
+  res.render('login', { title: 'Login/Signup' });
 };
 
 exports.profile = (req, res) => {
@@ -44,7 +41,7 @@ exports.validateSignUp = (req, res, next) => {
   const errors = req.validationErrors();
   if (errors) {
     req.flash('error', errors.map(err => err.msg));
-    res.status(422).render('signup', {
+    res.status(422).render('login', {
       title: 'Signup',
       body: req.body,
       flashes: req.flash()
@@ -57,9 +54,13 @@ exports.validateSignUp = (req, res, next) => {
 // Signup The user
 exports.signup = async (req, res, next) => {
   const user = new User({ username: req.body.username, email: req.body.email });
-  User.register(user, req.body.password, (err, user) => {
-    if (err) throw err;
-  });
+  const registerASync = promisify(User.register, User);
+
+  try {
+    await registerASync(user, req.body.password);
+  } catch (err) {
+    return next(err);
+  }
   next();
 };
 

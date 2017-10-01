@@ -9,14 +9,15 @@ const mail = require('../handlers/mail');
 exports.login = passport.authenticate('local', {
   failureRedirect: '/login',
   failureFlash: true,
-  successRedirect: '/profile'
+  successRedirect: '/profile',
+  successFlash: 'Welcome!'
 });
 
 // Logs out the user
 exports.logout = (req, res) => {
   req.logout();
   req.flash('success', 'Successfully logged out.');
-  res.redirect('/');
+  res.redirect('/login');
 };
 
 // Middleware that checks if any user is currently logged in
