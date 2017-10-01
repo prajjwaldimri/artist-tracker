@@ -1,85 +1,14 @@
-  <html lang="en">
+<html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <title>{{title}}</title>
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <!-- Minified Materialize Css -->
-  <link rel="stylesheet" type="text/css" href="/css/materialize.css" media="screen,projection" />
-  <link rel="stylesheet" type="text/css" href="/css/login.css" />
-  <link rel="stylesheet" type="text/css" href="/css/palette.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {{> head}}
 </head>
 
 <body>
-<div class="container-fluid ">
-    <div class="row wrapper ">
-      <div class="col s12 m12 l4 offset-l4" >
-        <div class="card " style="margin-top:25%" >
-          <div class="card-content dark-primary-color center-align " style="height:100px">
+  {{> navbar}} {{> footer}}
 
-
-            <h4 class="text-primary-color  ">ARTIST TRACKER</h4>
-
-            </div>
-          <div class="card-conten  " >
-              <form method="post" autocomplete= "off" >
-            <div class="row ">
-
-              <div class=" col s1 m1 l1 input-field " >
-                      <i class="material-icons small" style="margin : 10px 0 0 0px; color:gray">account_box</i>
-
-              </div>
-              <div class="input-field col  s11 m11 l11">
-
-              <input id="example" name="username" type="text" class="validate" data-validation="length "  required="" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" maxlength="30" oninvalid="setCustomValidity('Enter only alphanumeric character ')"onchange="try{setCustomValidity('')}catch(e){}"  >
-                <label for="uname">UserName</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class=" col s1 m1 l1 input-field " >
-
-                    <i class="material-icons small" style="margin : 10px 0 0 0px;color:gray">lock</i>
-
-              </div>
-                <div class="input-field col  s11 m11 l11 ">
-                <input id="password" type="password" class="validate" name="password" required="" maxlength="15" aria-required="true">
-                <label for="password">Password</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col s12 center">
-                <button class="btn waves-effect waves-light default-primary-color " type="submit" name="action">LogIn</button>
-                  <br>
-                  <br>
-                  <a class="center secondary-text-color" href="#">Forget Password ?</a>
-
-                  <div class="right-align ">
-                  <a class="btn-floating btn-large waves-effect waves-light default-primary-color " href="signup" title="Need Acount"><i class="material-icons">add</i></a>
-                </div>
-              </div>
-            </div>
-          </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" href="/js/materialize.min.js" src="login.js"></script>
-  <script type="text/javascript">
-    $(window, document, undefined).ready(function() {
-      $('input').blur(function() {
-        var $this = $(this);
-        if ($this.val())
-          $this.addClass('used');
-        else
-          $this.removeClass('used');
-      });
-    });
-  </script>
+  <script type="text/javascript" href="/js/materialize.min.js"></script>
 
 </body>
 
