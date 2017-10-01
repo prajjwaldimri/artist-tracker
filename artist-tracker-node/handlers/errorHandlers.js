@@ -28,13 +28,24 @@ Handles the errors while production. DO not leak stacktraces to the user
  */
 exports.productionErrors = (err, req, res, next) => {
   res.status(err.status || 500);
-  // For the signup errors
-  if (err.name === 'UserExistsError') {
-    req.flash('error', 'A user with that email/username already exists');
-    res.redirect('back');
+
+  switch (err.name) {
+    // passport-local-mongoose Errors  https://github.com/saintedlama/passport-local-mongoose#error-messages
+    case 'UserExistsError':
+    case 'AttemptTooSoonError':
+    case 'MissingPasswordError':
+    case 'TooManyAttemptsError':
+    case 'IncorrectPasswordError':
+    case 'IncorrectUsernameError':
+    case 'MissingUsernameError':
+      req.flash('error', err.message);
+      res.redirect('back');
+      break;
+
+    default:
+      res.render('error', {
+        message: err.message,
+        error: {}
+      });
   }
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
 };
