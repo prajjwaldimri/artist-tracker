@@ -20,12 +20,18 @@ gulp.task('sass', function () {
 
 // Minify JS files
 gulp.task('uglify', function () {
-  return gulp.src('./src/js/*.js').pipe(uglify()).pipe(gulp.dest('./dist/js'));
+  gulp
+    .src('./src/js/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('./dist/js'));
 });
 
 // Minify Images
 gulp.task('imgmin', function () {
-  gulp.src('./src/img/*').pipe(imagemin()).pipe(gulp.dest('./dist/img'));
+  gulp
+    .src('./src/img/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest('./dist/img'));
 });
 
 // Build materialize-css library

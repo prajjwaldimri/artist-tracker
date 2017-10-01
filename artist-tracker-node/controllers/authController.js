@@ -8,9 +8,8 @@ const mail = require('../handlers/mail');
 
 exports.login = passport.authenticate('local', {
   failureRedirect: '/login',
-  failureFlash: 'Something went wrong!',
-  successRedirect: '/profile',
-  successFlash: 'Sup'
+  failureFlash: true,
+  successRedirect: '/profile'
 });
 
 // Logs out the user

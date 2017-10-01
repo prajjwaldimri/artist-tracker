@@ -4,7 +4,7 @@ const User = mongoose.model('User');
 
 exports.index = (req, res) => {
   // res.render('index', { title: 'Artist Tracker' });
-  res.redirect('/profile');
+  res.redirect('/login');
 };
 
 exports.loginForm = (req, res) => {
