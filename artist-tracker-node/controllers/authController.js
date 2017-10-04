@@ -30,20 +30,25 @@ exports.isLoggedIn = (req, res, next) => {
   res.status(401).redirect('/login');
 };
 
+exports.forgotForm = (req, res) => {
+  res.render('forgot', { title: 'Forgot Password' });
+};
+
 // Method to initiate the forgot password request
 exports.forgot = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
-    req.flash('No users with that email exist');
+    req.flash('error', 'No account associated with that email exists.');
     return res.redirect('/login');
   }
-  user.resetPasswordToken = crypto.randomBytes(20).toString();
+  user.resetPasswordToken = crypto.randomBytes(20).toString('hex');
   user.resetPasswordExpires = Date.now() + 3600000; // 1 hour from now
   await user.save();
 
   // Send the user an email containing reset token
   const resetURL = `http://${req.headers
     .host}/account/reset/${user.resetPasswordToken}`;
+
   mail.send({ user, subject: 'Password Reset', resetURL });
   req.flash(
     'success',
@@ -91,7 +96,11 @@ exports.update = async (req, res) => {
   user.resetPasswordToken = undefined;
   user.resetPasswordExpires = undefined;
   const updatedUser = await user.save();
-  await req.login(updatedUser);
-  req.flash('success', 'Password has been reset');
-  res.redirect('/profile');
+  req.login(updatedUser, err => {
+    if (err) {
+      return res.redirect('/login');
+    }
+    req.flash('success', 'Password has been reset');
+    res.redirect('/profile');
+  });
 };

@@ -30,7 +30,7 @@ router.post(
   authController.confirmedPasswords,
   catchErrors(userController.updateAccount)
 );
-router.get('/account/forgot');
+router.get('/account/forgot', authController.forgotForm);
 router.post('/account/forgot', catchErrors(authController.forgot));
 router.get('/account/reset/:token', catchErrors(authController.reset));
 router.post(
