@@ -17,7 +17,7 @@
           </ul>
         </div>
         <div class="card-content" style="margin-top: 10%">
-          <!-- Login Form -->
+          {{!-- Login Form --}}
           <div id="login">
             <div class="row">
               <form class="col s10 offset-s1" action="/login" method="post">
@@ -44,10 +44,10 @@
               </form>
             </div>
           </div>
-          <!--Signup Form -->
+          {{!-- Signup Form --}}
           <div id="signup">
             <div class="row">
-              <form class="col s10 offset-s1" action="/signup" method="post">
+              <form class="col s10 offset-s1" action="/signup" method="post" name="signup-form">
                 <div class="row">
                   <div class="input-field white-text">
                     <input name="username" id="signup_username" type="text" class="validate" required>
@@ -99,9 +99,25 @@
   {{> footer}}
 
 
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="/js/materialize.min.js"></script>
   <script type="text/javascript" src="/js/login.js"></script>
+  <script type="text/javascript" src="/js/validate.min.js"></script>
+  <script type="text/javascript">
+    // Validator JS
+    var validator = new FormValidator(
+        'signup-form', [] {
+          name: 'password-confirm',
+          display: 'confirm password',
+          rules: 'matches[password]'
+        }],
+      function(errors, event) {
+        if (errors.length > 0) {
+          errors.forEach(function(error) {
+            Materialize.toast(error.message, 4000, 'red');
+          });
+        }
+      }
+    );
+  </script>
 
   {{> toast}}
 

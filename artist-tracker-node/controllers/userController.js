@@ -17,7 +17,7 @@ exports.profile = (req, res) => {
 };
 
 exports.account = (req, res) => {
-  res.render('account', { title: 'Edit Account' });
+  res.render('profile', { title: 'Profile' });
 };
 
 // Middleware that validates the signup form
@@ -64,20 +64,27 @@ exports.signup = async (req, res, next) => {
   next();
 };
 
-// Updates the name or email for any user
+// Updates the name, email and password for an user
 exports.updateAccount = async (req, res) => {
   const updates = {
-    name: req.body.username,
     email: req.body.email
   };
 
-  await User.findOneAndUpdate(
-    { _id: req.user._id },
-    { $set: updates },
-    { new: true, runValidators: true, context: 'query' }
-  );
+  try {
+    const user = new User(req.user);
+    const changePassword = promisify(user.changePassword, user);
+    await changePassword(req.body['current-password'], req.body.password);
 
-  // Redirects to the previous page
-  req.flash('success', 'Profile Updated!');
-  res.redirect('back');
+    await User.findOneAndUpdate(
+      { _id: req.user._id },
+      { $set: updates },
+      { new: true, runValidators: true, context: 'query' }
+    );
+    // Redirects to the previous page
+    req.flash('success', 'Profile Updated!');
+    res.redirect('back');
+  } catch (error) {
+    req.flash('error', 'Incorrect Current Password');
+    res.redirect('back');
+  }
 };

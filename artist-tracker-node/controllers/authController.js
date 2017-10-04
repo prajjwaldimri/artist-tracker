@@ -69,6 +69,7 @@ exports.reset = async (req, res) => {
 exports.confirmedPasswords = (req, res, next) => {
   if (req.body.password === req.body['password-confirm']) {
     next();
+    return;
   }
   req.flash('error', 'Passwords do not match');
   res.redirect('back');

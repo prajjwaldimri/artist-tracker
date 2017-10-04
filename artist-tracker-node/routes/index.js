@@ -25,7 +25,12 @@ router.post(
 router.get('/profile', authController.isLoggedIn, userController.profile);
 
 router.get('/account', authController.isLoggedIn, userController.account);
-router.post('/account', catchErrors(userController.updateAccount));
+router.post(
+  '/account',
+  authController.confirmedPasswords,
+  catchErrors(userController.updateAccount)
+);
+router.get('/account/forgot');
 router.post('/account/forgot', catchErrors(authController.forgot));
 router.get('/account/reset/:token', catchErrors(authController.reset));
 router.post(
