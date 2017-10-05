@@ -45,6 +45,8 @@ router.post(
   catchErrors(artistController.addNewArtist)
 );
 
-router.get('/search/:artistName', catchErrors(searchController.search));
+router.get('/search', searchController.searchForm);
+// POST to /search to search for any artist
+router.post('/search', catchErrors(searchController.search));
 
 module.exports = router;

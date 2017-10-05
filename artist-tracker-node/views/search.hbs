@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {{> head}}
+</head>
+
+<body>
+  {{> navbar}}
+  <div class="container">
+    <form class="col s12" action="/search" method="post">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="artist-name" name="artistName" type="search" class="validate">
+          <label for="artist_name">Enter the name of an artist</label>
+        </div>
+      </div>
+    </form>
+  </div> {{> footer}} {{> toast}}
+</body>
+
+</html>
