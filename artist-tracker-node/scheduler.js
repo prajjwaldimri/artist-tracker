@@ -12,11 +12,11 @@ mongoose.connect(process.env.MLAB_DB);
 
 // Require Models for mongoose
 const Artist = require('./models/artist');
-
+const User = require('./models/user');
 // Get all the artits ids currently in the database
 (() => {
   Artist.find({})
-    .select('discogs_id')
+    .select('discogs_id latest_release_id fans')
     .exec(async (err, artists) => {
       if (err) {
         throw err;
@@ -27,6 +27,16 @@ const Artist = require('./models/artist');
           artists[i].discogs_id,
           artists[i].latest_release_id
         );
+
+        // Update the artist model's newest release
+        if (newReleases.length > 0) {
+          await Artist.findOneAndUpdate(
+            { _id: artists[i]._id },
+            { $set: { latest_release_id: newReleases[0].id } },
+            { new: true }
+          );
+        }
+
         // Send all the emails for this artist
         await MailReleases(newReleases, artists[i]);
       }
@@ -46,7 +56,7 @@ const ReleaseChecker = function (artistId, releaseId) {
         'User-Agent': 'request'
       }
     })
-      .then((response, body) => {
+      .then(async (response, body) => {
         response = JSON.parse(response);
         let newReleases = [];
         // Traverse to the latest release id till which we have reported
@@ -56,6 +66,7 @@ const ReleaseChecker = function (artistId, releaseId) {
           }
           newReleases.push(response.releases[i]);
         }
+
         resolve(newReleases);
       })
       .catch(error => {
@@ -65,19 +76,26 @@ const ReleaseChecker = function (artistId, releaseId) {
   });
 };
 
-const MailReleases = function (releases, artist) {
-  return new Promise((resolve, reject) => {
+const MailReleases = (releases, artist) => {
+  return new Promise(async (resolve, reject) => {
     // For every release
-    for (var i = 0; i < releases.length; i++) {
+    for (let i = 0; i < releases.length; i++) {
       // Send email to all the fans of this artist
-      for (var j = 0; j < artist.fans.length; j++) {
-        if (!artist.fans[j].email) break;
-        mailer.send({
-          subject: `New release by ${releases[i].artist}`,
-          user: { email: artist.fans[j].email },
-          html: `<h3> ${releases[i].artist} has a new ${releases[i]
-            .type} titled ${releases[i].title}</h3>`
-        });
+      for (let j = 0; j < artist.fans.length; j++) {
+        if (artist.fans[j].length <= 0) {
+          break;
+        }
+        let user = await User.findOne({ _id: artist.fans[j] });
+        console.log(chalk.green(JSON.stringify(user)));
+        if (user) {
+          await mailer.send({
+            subject: `New release by ${releases[i].artist}`,
+            user: { email: user.email },
+            html: `<h3> ${releases[i].artist} has a new ${releases[i]
+              .type} titled ${releases[i].title}</h3>`,
+            file: './src/templates/forgetEmailTemplate.hbs'
+          });
+        }
       }
     }
     resolve();

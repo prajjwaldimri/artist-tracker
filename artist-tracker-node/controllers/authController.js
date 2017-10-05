@@ -49,7 +49,12 @@ exports.forgot = async (req, res) => {
   const resetURL = `http://${req.headers
     .host}/account/reset/${user.resetPasswordToken}`;
 
-  mail.send({ user, subject: 'Password Reset', resetURL });
+  await mail.send({
+    user,
+    subject: 'Password Reset',
+    resetURL,
+    file: './src/templates/forgetEmailTemplate.hbs'
+  });
   req.flash(
     'success',
     'An email has been sent to your account with the reset link. It will be valid for 1 hour'

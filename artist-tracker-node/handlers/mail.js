@@ -7,26 +7,31 @@ let domain = process.env.MAILGUN_DOMAIN;
 var mailgun = require('mailgun-js')({ apiKey: apiKey, domain: domain });
 
 exports.send = options => {
-  const readFile = promisify(fs.readFile);
+  return new Promise((resolve, reject) => {
+    const readFile = promisify(fs.readFile);
+    let html = '';
 
-  readFile('./src/templates/forgetEmailTemplate.hbs').then(hbs => {
-    let template = Handlebars.compile(hbs.toString());
-    let templateData = { reset_password_url: options.resetURL };
-    let html = template(templateData);
+    readFile(`${options.file}`).then(async hbs => {
+      if (!options.html) {
+        let template = Handlebars.compile(hbs.toString());
+        let templateData = { reset_password_url: options.resetURL };
+        html = template(templateData);
+      }
+      html = options.html;
 
-    const text = htmlToText.fromString(html);
+      const text = htmlToText.fromString(html);
 
-    var data = {
-      from: `Artist-Tracker <noreply@artisttracker.com>`,
-      to: options.user.email,
-      subject: options.subject,
-      html: html,
-      text
-    };
+      var data = {
+        from: `Artist-Tracker <noreply@artisttracker.com>`,
+        to: options.user.email,
+        subject: options.subject,
+        html: html,
+        text
+      };
 
-    mailgun.messages().send(data, function (error, body) {
-      if (error) console.log(error);
-      console.log(body);
+      const result = await mailgun.messages().send(data);
+      console.log(result);
+      resolve();
     });
   });
 };
