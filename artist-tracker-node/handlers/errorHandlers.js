@@ -47,5 +47,6 @@ exports.productionErrors = (err, req, res, next) => {
         message: err.message,
         error: {}
       });
+      break;
   }
 };

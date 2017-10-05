@@ -1,22 +1,22 @@
 {{#if flashes}}
   {{#each flashes.error}}
     <script type="text/javascript">
-      Materialize.toast('{{@this}}', 4000, 'red');
+      Materialize.toast('{{@this}}', 4000, 'red darken-3');
     </script>
   {{/each}}
   {{#each flashes.info}}
     <script type="text/javascript">
-      Materialize.toast('{{@this}}', 4000, 'blue');
+      Materialize.toast('{{@this}}', 4000, 'blue darken-3');
     </script>
   {{/each}}
   {{#each flashes.warning}}
     <script type="text/javascript">
-      Materialize.toast('{{@this}}', 4000, 'amber');
+      Materialize.toast('{{@this}}', 4000, 'amber darken-4');
     </script>
   {{/each}}
   {{#each flashes.success}}
     <script type="text/javascript">
-      Materialize.toast('{{@this}}', 4000, 'green');
+      Materialize.toast('{{@this}}', 4000, 'green darken-3');
     </script>
   {{/each}}
 {{/if}}

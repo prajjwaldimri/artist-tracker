@@ -8,25 +8,26 @@ const request = require('request-promise-native');
 exports.addArtist = async (req, res) => {
   let artist = await Artist.find({ discogs_id: req.body.artistId });
 
-  if (artist === null) {
+  if (artist.length <= 0) {
     artist = await saveNewArtist(req.body.artistId);
   }
 
-  await Artist.findOneAndUpdate(
-    { _id: artist._id },
-    { $push: { fans: req.user._id } },
-    { new: true, runValidators: true, context: 'query' }
-  );
+  if (!artist.fans.includes(req.user._id)) {
+    await Artist.findOneAndUpdate(
+      { _id: artist._id },
+      { $push: { fans: req.user._id } },
+      { new: true }
+    );
+  }
+  if (!req.user.fav_artists.includes(artist._id)) {
+    await User.findOneAndUpdate(
+      { _id: req.user._id },
+      { $push: { fav_artists: artist._id } },
+      { new: true }
+    );
+  }
 
-  await User.findOneAndUpdate(
-    { _id: req.user._id },
-    { $push: { fav_artists: artist._id } },
-    { new: true, runValidators: true, context: 'query' }
-  );
-
-  // Redirects to the previous page
-  req.flash('success', 'Artist Added to your favorites!');
-  res.status(200);
+  res.status(200).json({ success: 'Updated Successfully' });
 };
 
 const saveNewArtist = artistId => {

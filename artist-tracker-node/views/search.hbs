@@ -12,7 +12,7 @@
       <div class="row">
         <div class="valign-wrapper">
           <div class="input-field col s10">
-            <input id="artist-name" name="artistName" type="search" class="validate" required>
+            <input value="{{searchTerm}}" id="artist-name" name="artistName" type="search" class="validate" required>
             <label for="artist_name">Enter the name of an artist</label>
           </div>
           <button class="waves-effect waves-indigo btn-flat" type="submit" name="action"><i class="material-icons">search</i></button>
@@ -25,16 +25,20 @@
         {{#each searchResult.results}}
           <li class="collection-item avatar">
             <img src="{{this.thumb}}" alt="" class="circle">
-            <span class="title">{{this.title}}</span>
-            <p>{{this.type}}</p>
-            <a href="#!" class="secondary-content"><i class="material-icons">add</i></a>
+            <span class="title">{{title}}</span>
+            <p>{{type}}</p>
+            <a href="#" data-id="{{this.id}}" class="secondary-content">
+              <i class="material-icons">add</i>
+            </a>
           </li>
         {{/each}}
       </ul>
     {{/if}}
   </div>
 
-  {{> footer}} {{> toast}}
+  {{> footer}}
+  <script type="text/javascript" src="/js/search.js"></script>
+  {{> toast}}
 </body>
 
 </html>

@@ -42,11 +42,15 @@ router.post(
 router.post(
   '/account/addArtist',
   authController.isLoggedIn,
-  catchErrors(artistController.addNewArtist)
+  catchErrors(artistController.addArtist)
 );
 
-router.get('/search', searchController.searchForm);
+router.get('/search', authController.isLoggedIn, searchController.searchForm);
 // POST to /search to search for any artist
-router.post('/search', catchErrors(searchController.search));
+router.post(
+  '/search',
+  authController.isLoggedIn,
+  catchErrors(searchController.search)
+);
 
 module.exports = router;

@@ -1,0 +1,1 @@
+$(document).ready(function(){$(".secondary-content").click(function(){var t=$(this),e=t.data("id");$.ajax({type:"POST",url:"/account/addArtist",data:{artistId:e},dataType:"json",success:function(){t.children().first().text("done"),Materialize.toast("Successfully Added",2e3,"green")},error:function(){Materialize.toast("Something bad happened! Try again",2e3,"red")}})})});
