@@ -30,6 +30,22 @@ exports.addArtist = async (req, res) => {
   res.status(200).json({ success: 'Updated Successfully' });
 };
 
+exports.getArtist = async (req, res) => {
+  let artist = await Artist.findOne({ _id: req.params.Id });
+  let response = JSON.parse(
+    await request({
+      url: `https://api.discogs.com/artists/${artist.discogs_id}`,
+      headers: {
+        Authorization: `Discogs key=${process.env.DISCOGS_KEY}, secret=${process
+          .env.DISCOGS_SECRET}`,
+        'User-Agent': 'request'
+      }
+    })
+  );
+
+  res.status(200).json(response);
+};
+
 const saveNewArtist = artistId => {
   return new Promise(async (resolve, reject) => {
     // Get the latest release id for the artist from discogs

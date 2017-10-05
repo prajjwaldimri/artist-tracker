@@ -11,11 +11,27 @@
     <div class="col s12" style="padding: 0">
       {{!--Top Tabs --}}
       <ul class="tabs grey darken-4 tabs-fixed-width z-depth-1">
-        <li class="tab col s3 white-text"><a class="active" href="#add">Favorite Artists</a></li>
+
+        <li class="tab col s3 white-text"><a class="active" href="#fav">Favorite Artists</a></li>
         <li class="tab col s3 white-text"><a href="#edit">Edit Profile</a></li>
-        <li class="tab col s3 white-text"><a href="#preferences">Preferences</a></li>
+        <li class="tab col s3 white-text disabled"><a href="#preferences">Preferences</a></li>
       </ul>
     </div>
+
+    <div id="fav" class="col s12" style="margin-top: 4%">
+      <div class="container">
+        <ul class="collapsible popout favorites" data-collpasible="accordion">
+          {{#each user.fav_artists}}
+            <li data-id="{{this}}">
+              <div class="collapsible-header"><img src="" alt="" class="circle">Artist Name</div>
+              <div class="collapsible-body"><span>Artist Description</span></div>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+
+
     {{!-- Edit Profile Form --}}
     <div id="edit" class="col s12">
       <div class="container" style="padding-top: 5%">
@@ -58,11 +74,7 @@
       </div>
     </div>
 
-    <div id="add" class="col s12">
-      <div class="container">
-        <h2>Test</h2>
-      </div>
-    </div>
+
   </div>
 
   {{> footer}}

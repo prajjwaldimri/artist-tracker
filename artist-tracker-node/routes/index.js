@@ -53,4 +53,11 @@ router.post(
   catchErrors(searchController.search)
 );
 
+// Custom Discogs Functions
+router.get(
+  '/getArtist/:Id',
+  authController.isLoggedIn,
+  artistController.getArtist
+);
+
 module.exports = router;
