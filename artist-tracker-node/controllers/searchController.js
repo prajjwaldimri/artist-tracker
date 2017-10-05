@@ -14,5 +14,8 @@ exports.search = async (req, res) => {
       'User-Agent': 'request'
     }
   });
-  res.status(200).json(JSON.parse(response));
+  res.render('search', {
+    title: `Search Results for ${req.body.artistName}`,
+    searchResult: JSON.parse(response)
+  })();
 };
